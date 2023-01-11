@@ -18,33 +18,31 @@ import br.com.hrworker.repositories.WorkerRepository;
 @RequestMapping(value = "/workers")
 public class WorkerResource {
 
-	private static Logger logger = org.slf4j.LoggerFactory.getLogger(WorkerResource.class);
+    private static Logger logger = org.slf4j.LoggerFactory.getLogger(WorkerResource.class);
 
-	@Autowired
-	private Environment env;
+    @Autowired
+    private Environment env;
 
-	@Autowired
-	private WorkerRepository repository;
+    @Autowired
+    private WorkerRepository repository;
 
-	@GetMapping
-	public ResponseEntity<List<Worker>> findAll() {
-		List<Worker> list = repository.findAll();
-		return ResponseEntity.ok(list);
-	}
+    @GetMapping
+    public ResponseEntity<List<Worker>> findAll() {
+        List<Worker> list = repository.findAll();
+        return ResponseEntity.ok(list);
+    }
 
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<Worker> findById(@PathVariable Long id) {
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Worker> findById(@PathVariable Long id) {
 
-		/*
-		try {
-			Thread.sleep(3000L);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		*/
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-		logger.info("PORT = " + env.getProperty("local.server.port"));
-		Worker obj = repository.findById(id).get();
-		return ResponseEntity.ok(obj);
-	}
+        logger.info("PORT = " + env.getProperty("local.server.port"));
+        Worker obj = repository.findById(id).get();
+        return ResponseEntity.ok(obj);
+    }
 }
